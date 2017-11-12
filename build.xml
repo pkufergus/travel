@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="travel" basedir="." default="war">
+
+	<property name="src" value="${basedir}/src/main/java" />
+	<property name="script" value="${basedir}/src/script" />
+	<property name="resources" value="${basedir}/src/main/resources" />
+	<property name="lib" value="${basedir}/src/lib" />
+	<property name="jetty.lib" value="${basedir}/src/jetty" />
+	<property name="webapps" value="${basedir}/src/main/webapps" />
+	<property name="build" value="${basedir}/bin" />
+	<property name="target" value="${basedir}/target" />
+	<property name="name" value="travel" />
+
+	<!-- ================================= 
+          target: war              
+         ================================= -->
+	<target name="war" depends="package" description="description">
+		<war destfile="${target}/${name}.war" encoding="UTF-8">
+			<classes dir="${resources}">
+				<exclude name="jetty.xml" />
+			</classes>
+			<lib dir="${lib}" />
+			<lib file="${target}/${name}.jar" />
+			<fileset dir="${webapps}">
+				<exclude name="**/webdefault.xml" />
+			</fileset>
+		</war>
+		<delete file="${target}/${name}.jar" />
+	</target>
+
+	<!-- ================================= 
+          target: app              
+         ================================= -->
+	<target name="app" depends="package">
+		<mkdir dir="${target}/${name}/resources" />
+		<mkdir dir="${target}/${name}/lib" />
+		<mkdir dir="${target}/${name}/webapps" />
+		<copy todir="${target}/${name}">
+			<fileset dir="${script}" />
+		</copy>
+		<copy todir="${target}/${name}/lib">
+			<fileset dir="${jetty.lib}">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${lib}">
+				<include name="*.jar" />
+			</fileset>
+			<fileset file="${target}/${name}.jar" />
+		</copy>
+		<copy todir="${target}/${name}/resources">
+			<fileset dir="${resources}" />
+		</copy>
+		<copy todir="${target}/${name}/webapps">
+			<fileset dir="${webapps}" />
+		</copy>
+		<zip destfile="${target}/${name}.zip" basedir="${target}/${name}" encoding="UTF-8" />
+		<unzip src="${target}/${name}.zip" dest="target/unzip"  />
+		<delete dir="${target}/${name}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: package                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="package" depends="compile">
+		<jar destfile="${target}/${name}.jar" encoding="UTF-8">
+			<fileset dir="${build}">
+				<include name="**/*.class" />
+			</fileset>
+		</jar>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" encoding="UTF-8">
+			<compilerarg value="-g:lines,vars,source" />
+			<classpath>
+				<fileset dir="${jetty.lib}" />
+				<fileset dir="${lib}" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="init" depends="clean">
+		<mkdir dir="${build}" />
+		<mkdir dir="${target}" />
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: clean                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="clean">
+		<delete dir="${build}" />
+		<delete dir="${target}" />
+	</target>
+
+</project>
