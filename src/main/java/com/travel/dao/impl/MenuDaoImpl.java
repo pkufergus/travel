@@ -23,7 +23,7 @@ public class MenuDaoImpl implements MenuDao {
 
 	@Override
 	public List<Menu> getMenuList(Integer pageNow, Integer pageSize) {
-		String sql = "SELECT t1.id,t1.DepartureCode AS srcPlace,t1.DestinationCode AS destPlace,COUNT(t2.description) AS description,t1.level FROM `aie_citypair` t1 LEFT JOIN `comment` t2 ON t1.id=t2.id AND t2.description!='' GROUP BY t1.DepartureCode,t1.DestinationCode";
+		String sql = "SELECT t1.id,t1.DepartureCode AS srcPlace,t1.DestinationCode AS destPlace,COUNT(t2.description) AS description,t1.level,t1.Undone as unDone FROM `aie_citypair` t1 LEFT JOIN `comment` t2 ON t1.id=t2.id AND t2.description!='' GROUP BY t1.DepartureCode,t1.DestinationCode";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Menu>(
 				Menu.class));
 	}

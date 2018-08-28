@@ -25,6 +25,7 @@ function drawMenuTable(result) {
 			+ '<th>目的地</th>'
 			+ '<th>菜单级别</th>'
 			+ '<th>添加评论</th>'
+			+ '<th>是否抓取</th>'
 			+ '<th>删除</th>'
 			+ '</tr>'
 			+ '</thead>' + '<tbody>';
@@ -58,6 +59,9 @@ function drawMenuTable(result) {
 				+ "&"
 				+ result[key].destCode
 				+ "') /></td>"
+				+"<td>"
+				+ result[key].unDone
+				+"</td>"
 				+ '<td class="td-style border-left border-right"><a style="text-decoration: underline;" href=javascript:void(0) onclick=deleteMenu("'
 				+ result[key].id + '") >' + del + '</a></td>'
 

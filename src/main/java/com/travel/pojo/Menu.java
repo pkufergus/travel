@@ -27,9 +27,19 @@ public class Menu {
 	
 	private String price;
 	
+	private String unDone;
 	
 	
 	
+	
+
+	public String getUnDone() {
+		return unDone;
+	}
+
+	public void setUnDone(String unDone) {
+		this.unDone = unDone;
+	}
 
 	public String getPrice_type() {
 		return price_type;
