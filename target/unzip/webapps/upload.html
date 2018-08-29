@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../../asset/js/jquery-2.1.1.min.js"></script>
+<script>
+	 $(function(){
+		 $.ajax({
+			type : 'GET',
+			url : '../../ajax/ajax_request.json',
+			data : {
+				urlStr : "https://staging.epower.amadeus.com/etraveltochina?Culture=zh-CN"
+			},
+			success : function(result){
+				alert(result);
+			},
+			error : function(result){
+				alert('error');
+			}
+			 
+		 });
+	 });
+</script>
+</head>
+<body>
+	 <iframe src="https://staging.epower.amadeus.com/etraveltochina?Culture=zh-CN"></iframe>
+</body>
+</html>

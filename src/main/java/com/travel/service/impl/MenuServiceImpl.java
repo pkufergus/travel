@@ -58,6 +58,7 @@ public class MenuServiceImpl implements MenuService {
 				
 				List<City> cList = cDao.getCityList();
 				for (Menu mn : mList) {
+					logger.info("unDone:"+mn.getUnDone());
 					for (City ct : cList) {
 						if (mn.getSrcPlace().equals(ct.getCityCode())) {
 							mn.setSrcCode(mn.getSrcPlace());

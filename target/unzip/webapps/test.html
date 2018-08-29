@@ -1,0 +1,41 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/search.css" />
+<script src='js/jquery-1.4.2.js'></script>
+<script src='js/My97DatePicker/WdatePicker.js'></script>
+<script src='js/search.js'></script>
+</head>
+<body>
+	<div class="order-mail-div"
+		style="display: none; background: rgb(244, 244, 244); margin-top: -9px"
+		id="order_mail_div"></div>
+	<div id='parent-div' class='sea-parent'>
+		<div class='search-main'>
+			<label class="search-label">航班查询</label>
+		</div>
+
+
+		<div>
+			<p class='round-trip-p'>
+				<input type="radio" onclick=changeTripType('double') id="flightTypeRoundTrip" name="flightType"
+					checked="checked" value="RoundTrip" class="valid"> <label
+					for="flightTypeRoundTrip" data-fld="NoLocalize">往返</label>
+					 <input
+					type="radio" onclick=changeTripType('single') id="flightTypeOneWay" name="flightType" value="OneWay"
+					class="valid"> <label for="flightTypeOneWay"
+					data-fld="NoLocalize">单程</label>
+					 <input type="radio" onclick=changeTripType('lot')
+					id="flightTypeMultiLeg" name="flightType" value="MultiLeg"
+					class="valid"> <label for="flightTypeMultiLeg"
+					data-fld="NoLocalize">多航段</label>
+			</p>
+		</div>
+
+
+		<div id='trip-change-div'>
+			
+
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>中美机票网后台管理系统</title>
+<link href="/v1/asset/images/style.css" rel="stylesheet"
+	type="text/css" />
+<link href="/v1/asset/css/city.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/v1/asset/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/v1/asset/js/city.js"></script>
+<script type="text/javascript" src="/v1/asset/js/menu.js"></script>
+<script type="text/javascript" src="/v1/asset/js/mail.js"></script>
+<script type="text/javascript" src="/v1/asset/js/mail.js"></script>
+<script type="text/javascript" src="/v1/asset/js/md5.js"></script>
+<script type="text/javascript" src="/v1/asset/js/index.js"></script>
+<script type="text/javascript" src="/v1/asset/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="/v1/asset/js/jquery-form.js"></script>
+<script type="text/javascript" src="/v1/asset/js/common_param.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//setMenuHeight
+		$('.menu').height($(window).height() - 51 - 27 - 26);
+		$('.sidebar').height($(window).height() - 51 - 27 - 26);
+		$('.page').height($(window).height() - 51 - 27 - 26);
+		$('.page iframe').width($(window).width() - 15 - 168);
+
+		//menu on and off
+		$('.btn').click(function() {
+			$('.menu').toggle();
+
+			if ($(".menu").is(":hidden")) {
+				$('.page iframe').width($(window).width() - 15 + 5);
+			} else {
+				$('.page iframe').width($(window).width() - 15 - 168);
+			}
+		});
+
+		//
+		$('.subMenu a[href="#"]').click(function() {
+			$(this).next('ul').toggle();
+			return false;
+		});
+	})
+</script>
+
+
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="header">
+			<div class="logo fleft" style="">
+				<span
+					style="position: absolute; margin-top: 10px; margin-left: 11px; color: white; font-size: 23px; font-weight: 600;">中美机票网后台管理系统</span>
+			</div>
+			<a href="javascript:void(0)" onclick="loginout()"> <span
+				style="color: white; font-weight: 900; position: absolute; margin-left: 70%; margin-top: 10px;">退出</span></a>
+			<a style='margin-left: -71px;' href="javascript:void(0)" onclick="updatePwdHtml()"> <span
+				style="color: white; font-weight: 900; position: absolute; margin-left: 70%; margin-top: 10px;">修改密码</span></a>
+			
+			<div class="clear"></div>
+			<div class="subnav">
+				<div class="subnavLeft fleft"></div>
+				<div class="fleft"></div>
+				<div class="subnavRight fright"></div>
+			</div>
+		</div>
+		<!--#header -->
+		<div id="content">
+			<div class="space"></div>
+			<div class="menu fleft">
+				<ul>
+					<li class="subMenuTitle">后台管理</li>
+					<li class="subMenu"><a style="font-weight: 600"
+						href="javascript:void(0)">城市管理</a>
+						<ul>
+							<li name='menu-li' id='li-1'  onclick="changeMenuBg('li-1')"><a id='city_list_href' onclick="getCityList()"
+								href="javascript:void(0)">城市列表</a></li>
+							<li name='menu-li'  id='li-2'  onclick="changeMenuBg('li-2')"><a id='city_add_href' onclick="addCityHtml()"
+								href="javascript:void(0)">添加城市</a></li>
+						</ul></li>
+					<li class="subMenu"><a style="font-weight: 600"
+						href="javascript:void(0)">菜单管理</a>
+						<ul>
+							<li name='menu-li'  id='li-3'  onclick="changeMenuBg('li-3')"><a onclick="getMenuList()" id='menu_list_href' href="javascript:void(0)">菜单列表</a></li>
+							<li name='menu-li'  id='li-4'  onclick="changeMenuBg('li-4')"><a onclick="addMenuHtml()" id='add_menu_list_href' href="javascript:void(0)">添加菜单</a></li>
+						</ul></li>
+					<li class="subMenu"><a style="font-weight: 600"
+						href="javascript:void(0)">邮件服务器管理</a>
+						<ul>
+							<li name='menu-li'  id='li-5' onclick="changeMenuBg('li-5')"><a onclick="getMailConfig()" href="javascript:void(0)">邮件服务器信息</a></li>
+						</ul></li>
+
+				</ul>
+			</div>
+			<div class='dialog-div' id="dialogDiv"></div>
+			<div class='show-img-div' style='display:none' id='show-img-div'></div>
+			<div id="pageDiv"
+				style="background: white; position: absolute; margin-left: 173px;"
+				class="page"></div>
+		</div>
+		<div id="footer"></div>
+		<!--#footer -->
+
+
+	</div>
+	<!--#wrap -->
+</body>
+</html>
